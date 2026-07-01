@@ -1,0 +1,142 @@
+/* Rusters Frontend — Base Styles */
+
+:root {
+  --color-bg: #0f0f13;
+  --color-surface: #1a1a24;
+  --color-border: #2a2a3a;
+  --color-accent: #7c6df0;
+  --color-accent-glow: rgba(124, 109, 240, 0.3);
+  --color-text: #e8e8f0;
+  --color-text-muted: #888899;
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(180deg, rgba(124, 109, 240, 0.08) 0%, transparent 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app-header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-header .subtitle {
+  margin-top: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.brand {
+  color: var(--color-accent);
+  font-weight: 600;
+  -webkit-text-fill-color: var(--color-accent);
+}
+
+/* Main */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Card */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+  flex: 1;
+  min-width: 280px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 32px var(--color-accent-glow);
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+/* Status JSON output */
+.status-json {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  color: var(--color-success);
+  line-height: 1.7;
+}
+
+.error {
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .app-header {
+    padding: 2rem 1rem 1.5rem;
+  }
+  .app-main {
+    padding: 1rem;
+  }
+}

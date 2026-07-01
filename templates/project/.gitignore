@@ -1,0 +1,30 @@
+# Rust
+/target/
+Cargo.lock
+
+# Environment
+.env.local
+.env.*.local
+
+# Database
+*.sqlite
+*.db
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+bun.lockb
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
