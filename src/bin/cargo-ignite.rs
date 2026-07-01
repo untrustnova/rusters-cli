@@ -114,7 +114,22 @@ fn main() -> Result<()> {
 
     scaffold(&ctx, &target)?;
 
+    spinner.set_message("Installing frontend dependencies with Bun…");
+    let status = std::process::Command::new("bun")
+        .arg("install")
+        .current_dir(target.join("frontend"))
+        .status();
+
     spinner.finish_and_clear();
+
+    match status {
+        Ok(s) if s.success() => {
+            wizard::success("Frontend dependencies installed successfully.");
+        }
+        _ => {
+            wizard::warn("Failed to run `bun install` automatically. Please run it manually inside the `frontend` directory.");
+        }
+    }
 
     println!("\n{}", "✔  Project scaffolded successfully!".green().bold());
     println!();
