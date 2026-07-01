@@ -131,6 +131,32 @@ fn main() -> Result<()> {
         }
     }
 
+    // Pre-compile Rust backend dependencies
+    let rust_spinner = ProgressBar::new_spinner();
+    rust_spinner.set_style(
+        ProgressStyle::with_template("{spinner:.cyan} {msg}")
+            .unwrap()
+            .tick_strings(&["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]),
+    );
+    rust_spinner.set_message("Compiling Rust backend dependencies (cargo build)…");
+    rust_spinner.enable_steady_tick(std::time::Duration::from_millis(80));
+
+    let rust_status = std::process::Command::new("cargo")
+        .arg("build")
+        .current_dir(&target)
+        .status();
+
+    rust_spinner.finish_and_clear();
+
+    match rust_status {
+        Ok(s) if s.success() => {
+            wizard::success("Rust backend compiled successfully.");
+        }
+        _ => {
+            wizard::warn("Failed to pre-compile the Rust backend. You can compile it manually by running `cargo build` inside the project directory.");
+        }
+    }
+
     println!("\n{}", "✔  Project scaffolded successfully!".green().bold());
     println!();
     println!("   {} {}", "→  cd".dimmed(), project_name.white().bold());
