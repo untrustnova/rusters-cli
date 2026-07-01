@@ -16,4 +16,5 @@
 //!     .layer(AuthLayer::new(secret));
 //! ```
 
+#[allow(unused_imports)]
 pub use rusters_core::middleware::AuthLayer;

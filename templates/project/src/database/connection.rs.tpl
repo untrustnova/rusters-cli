@@ -9,6 +9,7 @@ use anyhow::Result;
 use rusters_core::{config::RustersConfig, db::DatabasePool};
 
 /// Establish the database pool from the loaded project configuration.
+#[allow(dead_code)]
 pub async fn connect(config: &RustersConfig) -> Result<Arc<DatabasePool>> {
     let pool = DatabasePool::connect(&config.database).await?;
     Ok(Arc::new(pool))

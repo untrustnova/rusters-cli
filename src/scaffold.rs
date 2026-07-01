@@ -37,6 +37,7 @@ impl ScaffoldContext {
         engine.set("HTTP_SERVER", &self.http_server);
         engine.set("DB_DRIVER", &self.db_driver);
         engine.set("FRONTEND", &self.frontend);
+        engine.set("ENTRY_FILE", if self.frontend == "vue" { "main.ts" } else { "main.tsx" });
         engine.set("BACKEND_PORT", self.backend_port.to_string());
         engine.set("FRONTEND_PORT", self.frontend_port.to_string());
         engine.set(
@@ -188,6 +189,7 @@ fn should_skip(name: &str, ctx: &ScaffoldContext) -> bool {
         "App.vue" => ctx.frontend != "vue",
         "package.json.tpl" => ctx.frontend != "vue",
         "vite.config.ts.tpl" => ctx.frontend != "vue",
+        "main.ts.tpl" => ctx.frontend != "vue",
 
         // React-only
         "main.tsx" => ctx.frontend != "react",
