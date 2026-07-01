@@ -192,7 +192,7 @@ fn should_skip(name: &str, ctx: &ScaffoldContext) -> bool {
         "main.ts.tpl" => ctx.frontend != "vue",
 
         // React-only
-        "main.tsx" => ctx.frontend != "react",
+        "main.tsx.tpl" => ctx.frontend != "react",
         "package.react.json.tpl" => ctx.frontend != "react",
         "vite.config.react.ts.tpl" => ctx.frontend != "react",
 
