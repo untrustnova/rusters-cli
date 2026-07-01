@@ -162,11 +162,12 @@ fn resolve_output_name(name: &str) -> String {
 
     // Rename the React-specific package.json to the standard name
     match base {
-        "package.react.json" => "package.json".to_string(),
-        // Rename server conf files to the canonical rusters.conf
-        "rusters.conf.nginx" => "rusters.conf".to_string(),
-        "rusters.conf.caddy" => "rusters.conf".to_string(),
-        other => other.to_string(),
+      "package.react.json" => "package.json".to_string(),
+      "vite.config.react.ts" => "vite.config.ts".to_string(),
+      // Rename server conf files to the canonical rusters.conf
+      "rusters.conf.nginx" => "rusters.conf".to_string(),
+      "rusters.conf.caddy" => "rusters.conf".to_string(),
+      other => other.to_string(),
     }
 }
 
@@ -186,10 +187,12 @@ fn should_skip(name: &str, ctx: &ScaffoldContext) -> bool {
         // Vue-only
         "App.vue" => ctx.frontend != "vue",
         "package.json.tpl" => ctx.frontend != "vue",
+        "vite.config.ts.tpl" => ctx.frontend != "vue",
 
         // React-only
         "main.tsx" => ctx.frontend != "react",
         "package.react.json.tpl" => ctx.frontend != "react",
+        "vite.config.react.ts.tpl" => ctx.frontend != "react",
 
         _ => false,
     }
