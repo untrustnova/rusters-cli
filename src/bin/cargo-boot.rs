@@ -116,6 +116,19 @@ fn main() -> Result<()> {
     // -----------------------------------------------------------------------
     let frontend_root = project_root.join("frontend");
     let frontend_handle = thread::spawn(move || -> Result<()> {
+        let node_modules = frontend_root.join("node_modules");
+        if !node_modules.exists() {
+            println!("{} Frontend node_modules not found. Running bun install...", "[frontend]".bright_green().bold());
+            let status = Command::new("bun")
+                .arg("install")
+                .current_dir(&frontend_root)
+                .status()
+                .context("Failed to run bun install")?;
+            if !status.success() {
+                anyhow::bail!("bun install failed");
+            }
+        }
+
         let mut cmd = Command::new("bun");
         cmd.arg("run")
             .arg("dev")

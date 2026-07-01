@@ -9,7 +9,7 @@ name = "{{ PROJECT_ID }}"
 path = "src/main.rs"
 
 [dependencies]
-rusters-core = "0.1"
+rusters-core = { git = "https://github.com/untrustnova/rusters-core", tag = "v0.1.0" }
 
 tokio = { version = "1", features = ["full"] }
 axum = { version = "0.7", features = ["macros"] }

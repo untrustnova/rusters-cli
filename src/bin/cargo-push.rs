@@ -96,6 +96,10 @@ async fn main() -> Result<()> {
 
     spinner.set_message("Running migrations…");
     let migrations_path = config.project_root.join("migrations");
+    if !migrations_path.exists() {
+        std::fs::create_dir_all(&migrations_path)
+            .context("Failed to create migrations directory")?;
+    }
     pool.run_migrations(&migrations_path).await
         .context("Migration failed — ensure migrations/ directory exists with .sql files")?;
 
