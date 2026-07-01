@@ -1,6 +1,6 @@
 [package]
 name = "rusters-cli"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Untrustnova Community"]
 license = "Apache-2.0"
@@ -61,6 +61,7 @@ console = "0.15"
 indicatif = "0.17"
 colored = "2"
 crossterm = "0.27"
+include_dir = { version = "0.7", features = ["glob"] }
 
 [target.'cfg(unix)'.dependencies]
 nix = { version = "0.27", features = ["signal", "process"] }
